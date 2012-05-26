@@ -64,6 +64,8 @@ Example usage and output
 
 ::
 
+  $ Usage: python-acapela -acclogin <accountlogin> -applogin <applicationlogin> -p <password> -t <text> [-q <quality>] [-d <directory>] [-url <service_url>] [-h]
+  
   $ python-acapela 'I feel like I’m taking crazy pills!' -l en
   
 
