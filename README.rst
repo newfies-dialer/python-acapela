@@ -20,11 +20,18 @@ Quickstart
 
 ::
 
-   import acapela
-   engine = acapela.init()
-   engine.say('Greetings!')
-   engine.say('How are you today?')
-   engine.runAndWait()
+    import acapela
+    
+    ACCOUNT_LOGIN = 'EVAL_XXXX'
+    APPLICATION_LOGIN = 'EVAL_XXXXXXX'
+    APPLICATION_PASSWORD = 'XXXXXXXX'
+    SERVICE_URL = 'http://vaas.acapela-group.com/Services/Synthesizer'
+    
+    tts_acapela = acapela.Acapela(ACCOUNT_LOGIN, APPLICATION_LOGIN, APPLICATION_PASSWORD, SERVICE_URL, '22k', '/tmp/')    
+    tts_acapela.prepare(text=u"Hola! Buenos días", lang='ES', gender='W', intonation='NORMAL')
+    output_filename = tts_acapela.run()
+    
+    print "Recorded TTS to %s" % output_filename
 
 
 Features
