@@ -1,3 +1,12 @@
+==============
+python-acapela
+==============
+
+:Author: Arezqui Belaid
+:Description: Python wrapper for text-to-speech synthesis with Acapela
+
+
+
 python-acapela - Python Acapela Library
 =======================================
 
@@ -5,6 +14,17 @@ python-acapela is a library to produce text-to-speech file using `Acapela`_ web 
 
 .. _Acapela: http://acapela-vaas.com/
 
+
+Quickstart
+==========
+
+::
+
+   import acapela
+   engine = acapela.init()
+   engine.say('Greetings!')
+   engine.say('How are you today?')
+   engine.runAndWait()
 
 
 Features
