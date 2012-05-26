@@ -66,6 +66,22 @@ class Acapela(object):
     #Available voices list
     #http://www.acapela-vaas.com/ReleasedDocumentation/voices_list.php
     langs  = {
+        'EN': {
+            'W': {
+                'NORMAL': 'rachel',
+            },
+            'M': {
+                'NORMAL': 'margaux',
+            },
+        },
+        'US': {
+            'W': {
+                'NORMAL': 'heather',
+            },
+            'M': {
+                'NORMAL': 'ryan',
+            },
+        },
         'ES': {
             'W': {
                 'NORMAL': 'ines',
@@ -73,27 +89,6 @@ class Acapela(object):
             'M': {
                 'NORMAL': 'antonio',
             }
-        },
-        'BR': {
-            'W': {
-                'NORMAL': 'marcia',
-            },
-        },
-        'EN': {
-            'W': {
-                'NORMAL': 'lucy',
-            },
-            'M': {
-                'NORMAL': 'graham',
-            },
-        },
-        'US': {
-            'W': {
-                'NORMAL': 'laura',
-            },
-            'M': {
-                'NORMAL': 'heather',
-            },
         },
         'FR': {
             'W': {
@@ -104,6 +99,11 @@ class Acapela(object):
             },
         },
         'PT': {
+            'W': {
+                'NORMAL': 'celia',
+            },
+        },
+        'BR': {
             'W': {
                 'NORMAL': 'marcia',
             },
@@ -134,7 +134,7 @@ class Acapela(object):
             req_voice = 'lucy22k'
         
         self.data = {
-            'cl_env': 'FLASH_AS_3.0',
+            'cl_env': 'PYTHON_2.X',
             'req_snd_id': key,
             'cl_login': self.ACCOUNT_LOGIN,
             'cl_vers': '1-30',
