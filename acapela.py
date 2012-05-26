@@ -111,6 +111,7 @@ class Acapela(object):
     }
     data = {}
     filename = None
+    cache = False
     
     def __init__(self, tts_engine, account_login, application_login, application_password, service_url, quality, directory=''):
         """construct Acapela TTS"""
@@ -147,10 +148,16 @@ class Acapela(object):
         self.filename = "%s-%s.mp3" % (key, lang)
         self.data['req_text'] = '\\vct=100\\ \\spd=160\\ %s' % text.encode("utf-8")
         
+    def set_cache(self, value=True):
+        """
+        Enable Cache of file, if files already stored return this filename
+        """
+        self.cache = value
+    
     def run(self):
         """run will call acapela API and and produce audio"""
         #check if file exists
-        if os.path.isfile(self.DIRECTORY + self.filename):
+        if self.cache and os.path.isfile(self.DIRECTORY + self.filename):
             return self.filename
         else:
             encdata = parse.urlencode(self.data)
@@ -158,50 +165,15 @@ class Acapela(object):
             return self.filename
         
         
+def _main():
+    """
+    Parse options and process text to Acapela
+    """
+    print "...starting..."
 
-def test_acapela():
-
-
-    #Construct
-    tts_acapela = Acapela(TTS_ENGINE, ACCOUNT_LOGIN, APPLICATION_LOGIN, APPLICATION_PASSWORD, SERVICE_URL, QUALITY, DIRECTORY)    
-
-    #General settings for test
-    gender = 'W'
-    intonation = 'NORMAL'
-    
-    #Spanish
-    lang = 'ES'
-    text = u"Newfies-Dialer es una aplicación de transmisión de voz diseñado y construido para automatizar la entrega de las llamadas telefónicas interactivas a contactos, clientes y público en general."
-    tts_acapela.prepare(text, lang, gender, intonation)
-    output_filename = tts_acapela.run()
-    print "Recorded TTS to %s" % output_filename
-    sys.exit()
-    
-    #Portuguese
-    lang = 'BR'
-    text = u"Newfies-Dialer é um aplicativo de transmissão de voz projetada e construída para automatizar a entrega de telefonemas interativos para contatos, clientes e público em geral."
-    tts_acapela.prepare(text, lang, gender, intonation)
-    output_filename = tts_acapela.run()
-    print "Recorded TTS to %s" % output_filename
-    
-    #French
-    lang = 'FR'
-    text = u"Newfies-Dialer est une application de diffusion vocale conçu et construit pour automatiser la livraison des appels téléphoniques interactifs à des contacts, des clients et le public en général."
-    tts_acapela.prepare(text, lang, gender, intonation)
-    output_filename = tts_acapela.run()
-    print "Recorded TTS to %s" % output_filename
-    
-    #English
-    lang = 'EN'
-    text = "Newfies-Dialer is a voice broadcast application designed and built to automate the delivery of interactive phone calls to contacts, clients and the general public."
-    tts_acapela.prepare(text, lang, gender, intonation)
-    output_filename = tts_acapela.run()
-    print "Recorded TTS to %s" % output_filename
-    
-    
 
 if __name__ == '__main__':
-    #_main()
-    test_acapela()
+    _main()
+    
     
 

@@ -32,7 +32,7 @@ setup(
     author_email='areski@gmail.com',
     url='http://github.com/areski/python-acapela',
     license='MIT license',
-    py_modules=['python-acapela'],
+    py_modules=['acapela'],
     namespace_packages=[],
     include_package_data=True,
     zip_safe=False,
