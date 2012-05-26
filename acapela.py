@@ -48,11 +48,12 @@ APPLICATION_LOGIN = 'EVAL_XXXXXXX'
 APPLICATION_PASSWORD = 'XXXXXXXX'
 
 SERVICE_URL = 'http://vaas.acapela-group.com/Services/Synthesizer'
+LANGUAGE = 'EN'
 QUALITY = '22k' # 22k, 8k, 8ka, 8kmu
 DIRECTORY = '/tmp/'
 
 
-USAGE = """\nUsage: acapela.py -acclogin <accountlogin> -applogin <applicationlogin> -p <password> -t <text> [-q <quality>] [-d <directory>] [-url <service_url>] [-h]"""
+USAGE = """\nUsage: acapela.py -a <accountlogin> -n <applicationlogin> -p <password> -t <text> [-l <language>] [-q <quality>] [-d <directory>] [-url <service_url>] [-h]"""
 
 def validate_options(accountlogin, applicationlogin, password, text):
     """Perform sanity checks on threshold values"""
@@ -198,9 +199,10 @@ def _main():
     # Parse arguments
     parser = OptionParser()
     parser.add_option("-a", "--acclogin", dest="acclogin", help="accountlogin for authentication")
-    parser.add_option("-l", "--applogin", dest="applogin", help="applicationlogin for authentication")
+    parser.add_option("-n", "--applogin", dest="applogin", help="applicationlogin for authentication")
     parser.add_option("-p", "--password", dest="password", help="Password for authentication")
     parser.add_option("-t", "--text", dest="text", help="text to synthesize")
+    parser.add_option("-l", "--language", dest="language", help="language")
     parser.add_option("-q", "--quality", dest="quality", help="quality of synthesizer (22k, 8k, 8ka, 8kmu)")
     parser.add_option("-d", "--directory", dest="directory", help="directory to store the file")
     parser.add_option("-u", "--url", dest="url", help="web service url")
@@ -209,6 +211,7 @@ def _main():
     applogin = options.applogin
     password = options.password
     text = options.text
+    language = options.language
     quality = options.quality
     directory = options.directory
     url = options.url
@@ -225,7 +228,17 @@ def _main():
     if not url:
         url = SERVICE_URL
         
-    print (acclogin, applogin, password, text)
+    if not language:
+        language = LANGUAGE
+    
+    tts_acapela = Acapela(acclogin, applogin, password, url, quality, directory)    
+    gender = 'W'
+    intonation = 'NORMAL'
+    
+    tts_acapela.prepare(text, language, gender, intonation)
+    output_filename = tts_acapela.run()
+    
+    print "Recorded TTS to %s%s" % (directory, output_filename)
 
 if __name__ == '__main__':
     _main()
