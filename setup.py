@@ -42,7 +42,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pep8 = pep8:_main',
+            'tts-acapela = acapela:_main',
         ],
     },
     classifiers=[
