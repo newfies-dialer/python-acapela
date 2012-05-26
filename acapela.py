@@ -159,7 +159,7 @@ class Acapela(object):
         
         
 
-if __name__ == "__main__":
+def test_acapela():
 
 
     #Construct
@@ -199,3 +199,9 @@ if __name__ == "__main__":
     print "Recorded TTS to %s" % output_filename
     
     
+
+if __name__ == '__main__':
+    #_main()
+    test_acapela()
+    
+
