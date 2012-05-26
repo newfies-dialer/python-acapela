@@ -66,8 +66,7 @@ Example usage and output
 
   $ Usage: python-acapela -acclogin <accountlogin> -applogin <applicationlogin> -p <password> -t <text> [-q <quality>] [-d <directory>] [-url <service_url>] [-h]
   
-  $ python-acapela -acclogin <accountlogin> -applogin <applicationlogin> -p <password> -t 'I feel like I’m taking crazy pills!'
-  
+  $ Output : Recorded TTS to /tmp/ACAPELA-8895934760117809679-ES.mp3
 
 
 Feedback

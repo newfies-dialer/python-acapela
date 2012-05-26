@@ -234,7 +234,7 @@ def _main():
     tts_acapela = Acapela(acclogin, applogin, password, url, quality, directory)    
     gender = 'W'
     intonation = 'NORMAL'
-    
+    tts_acapela.set_cache(False)
     tts_acapela.prepare(text, language, gender, intonation)
     output_filename = tts_acapela.run()
     
