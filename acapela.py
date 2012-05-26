@@ -28,6 +28,7 @@ __version__ = '0.1'
 
 import sys
 import os.path
+from optparse import OptionParser
 
 if sys.version_info < (3,0):
     import urllib as request
@@ -50,6 +51,32 @@ SERVICE_URL = 'http://vaas.acapela-group.com/Services/Synthesizer'
 QUALITY = '22k' # 22k, 8k, 8ka, 8kmu
 DIRECTORY = '/tmp/'
 
+
+USAGE = """\nUsage: acapela.py -acclogin <accountlogin> -applogin <applicationlogin> -p <password> -t <text> [-q <quality>] [-d <directory>] [-url <service_url>] [-h]"""
+
+def validate_options(accountlogin, applicationlogin, password, text):
+    """Perform sanity checks on threshold values"""
+    
+    if not accountlogin or len(accountlogin) == 0:
+        print 'Error: Warning the option accountlogin should contain a string.'
+        print USAGE
+        sys.exit(3)
+        
+    if not applicationlogin or len(applicationlogin) == 0:
+        print 'Error: Warning the option applicationlogin should contain a string.'
+        print USAGE
+        sys.exit(3)
+        
+    if not password or len(password) == 0:
+        print 'Error: Warning the option password should contain a string.'
+        print USAGE
+        sys.exit(3)
+        
+    if not text or len(text) == 0:
+        print 'Error: Warning the option text should contain a string.'
+        print USAGE
+        sys.exit(3)
+    
 
 class Acapela(object):
 
@@ -110,7 +137,7 @@ class Acapela(object):
     }
     data = {}
     filename = None
-    cache = False
+    cache = True
     
     def __init__(self, account_login, application_login, application_password, service_url, quality, directory=''):
         """construct Acapela TTS"""
@@ -168,8 +195,37 @@ def _main():
     """
     Parse options and process text to Acapela
     """
-    print "...starting..."
-
+    # Parse arguments
+    parser = OptionParser()
+    parser.add_option("-a", "--acclogin", dest="acclogin", help="accountlogin for authentication")
+    parser.add_option("-l", "--applogin", dest="applogin", help="applicationlogin for authentication")
+    parser.add_option("-p", "--password", dest="password", help="Password for authentication")
+    parser.add_option("-t", "--text", dest="text", help="text to synthesize")
+    parser.add_option("-q", "--quality", dest="quality", help="quality of synthesizer (22k, 8k, 8ka, 8kmu)")
+    parser.add_option("-d", "--directory", dest="directory", help="directory to store the file")
+    parser.add_option("-u", "--url", dest="url", help="web service url")
+    (options, args) = parser.parse_args()
+    acclogin = options.acclogin
+    applogin = options.applogin
+    password = options.password
+    text = options.text
+    quality = options.quality
+    directory = options.directory
+    url = options.url
+        
+    # Perform sanity checks on options
+    validate_options(acclogin, applogin, password, text)
+    
+    if not quality:
+        quality = QUALITY
+    
+    if not directory:
+        directory = DIRECTORY
+        
+    if not url:
+        url = SERVICE_URL
+        
+    print (acclogin, applogin, password, text)
 
 if __name__ == '__main__':
     _main()
