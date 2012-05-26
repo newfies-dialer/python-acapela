@@ -48,7 +48,6 @@ APPLICATION_PASSWORD = 'XXXXXXXX'
 
 SERVICE_URL = 'http://vaas.acapela-group.com/Services/Synthesizer'
 QUALITY = '22k' # 22k, 8k, 8ka, 8kmu
-TTS_ENGINE = 'ACAPELA'
 DIRECTORY = '/tmp/'
 
 
@@ -113,9 +112,9 @@ class Acapela(object):
     filename = None
     cache = False
     
-    def __init__(self, tts_engine, account_login, application_login, application_password, service_url, quality, directory=''):
+    def __init__(self, account_login, application_login, application_password, service_url, quality, directory=''):
         """construct Acapela TTS"""
-        self.TTS_ENGINE = tts_engine
+        self.TTS_ENGINE = 'ACAPELA'
         self.ACCOUNT_LOGIN = account_login
         self.APPLICATION_LOGIN = application_login
         self.APPLICATION_PASSWORD = application_password

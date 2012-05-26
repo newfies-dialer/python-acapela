@@ -31,7 +31,6 @@ APPLICATION_PASSWORD = 'XXXXXXXX'
 
 SERVICE_URL = 'http://vaas.acapela-group.com/Services/Synthesizer'
 QUALITY = '22k' # 22k, 8k, 8ka, 8kmu
-TTS_ENGINE = 'ACAPELA'
 DIRECTORY = '/tmp/'
 
 
@@ -41,7 +40,7 @@ def test_acapela():
     """
 
     #Construct
-    tts_acapela = acapela.Acapela(TTS_ENGINE, ACCOUNT_LOGIN, APPLICATION_LOGIN, APPLICATION_PASSWORD, SERVICE_URL, QUALITY, DIRECTORY)    
+    tts_acapela = acapela.Acapela(ACCOUNT_LOGIN, APPLICATION_LOGIN, APPLICATION_PASSWORD, SERVICE_URL, QUALITY, DIRECTORY)    
 
     #General settings for test
     gender = 'W'
