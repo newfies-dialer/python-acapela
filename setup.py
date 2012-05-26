@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 def get_version():
-    f = open('python-acapela.py')
+    f = open('acapela.py')
     try:
         for line in f:
             if line.startswith('__version__'):
