@@ -86,6 +86,8 @@ Further information about Newfies-Dialer can be found at http://www.newfies-dial
 
 This module is built and supported by Star2Billing : http://www.star2billing.com
 
+Similar library in Ruby : https://github.com/mheld/acapela-ruby
+
 
 Source download
 ---------------
