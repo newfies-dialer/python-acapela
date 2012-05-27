@@ -4,7 +4,7 @@ python-acapela
 
 :Author: Arezqui Belaid
 :Description: Python wrapper for text-to-speech synthesis with Acapela
-
+:Company: Developed by Star2Billing http://www.star2billing.com
 
 
 python-acapela - Python Acapela Library
@@ -76,6 +76,14 @@ Your feedback is more than welcome. Write email to
 areski@gmail.com or post bugs and feature requests on github:
 
 http://github.com/areski/python-acapela/issues
+
+
+Who uses it
+-----------
+
+Newfies-Dialer, an open source Auto Dialer software, uses this module to synthetize audio files being play to the end-user.
+Further information about Newfies-Dialer can be found at http://www.newfies-dialer.org
+
 
 Source download
 ---------------
