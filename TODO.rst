@@ -8,3 +8,4 @@ TODO
 
 * Add testing
 
+* use python-request http://docs.python-requests.org
