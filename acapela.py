@@ -1,5 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 # acapela.py - Python wrapper for text-to-speech synthesis with Acapela
 # Copyright (C) 2012 Arezqui Belaid <areski@gmail.com>
 #
@@ -23,25 +24,23 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-
 __version__ = '0.1'
 
 import sys
 import os.path
 from optparse import OptionParser
 
-if sys.version_info < (3,0):
+if sys.version_info < (3, 0):
     import urllib as request
     parse = request
     import urllib2
     for method in dir(urllib2):
         setattr(request, method, getattr(urllib2, method))
     import cookielib as cookiejar
-    
 else:
+
     from http import cookiejar
     from urllib import parse, request
-
 
 ACCOUNT_LOGIN = 'EVAL_XXXX'
 APPLICATION_LOGIN = 'EVAL_XXXXXXX'
@@ -49,39 +48,46 @@ APPLICATION_PASSWORD = 'XXXXXXXX'
 
 SERVICE_URL = 'http://vaas.acapela-group.com/Services/Synthesizer'
 LANGUAGE = 'EN'
-QUALITY = '22k' # 22k, 8k, 8ka, 8kmu
+QUALITY = '22k'  # 22k, 8k, 8ka, 8kmu
 DIRECTORY = '/tmp/'
 
+USAGE = \
+    """\nUsage: acapela.py -a <accountlogin> -n <applicationlogin> -p <password> -t <text> [-l <language>] [-q <quality>] [-d <directory>] [-url <service_url>] [-h]"""
 
-USAGE = """\nUsage: acapela.py -a <accountlogin> -n <applicationlogin> -p <password> -t <text> [-l <language>] [-q <quality>] [-d <directory>] [-url <service_url>] [-h]"""
 
-def validate_options(accountlogin, applicationlogin, password, text):
+def validate_options(
+    accountlogin,
+    applicationlogin,
+    password,
+    text,
+    ):
     """Perform sanity checks on threshold values"""
-    
+
     if not accountlogin or len(accountlogin) == 0:
         print 'Error: Warning the option accountlogin should contain a string.'
         print USAGE
         sys.exit(3)
-        
+
     if not applicationlogin or len(applicationlogin) == 0:
         print 'Error: Warning the option applicationlogin should contain a string.'
         print USAGE
         sys.exit(3)
-        
+
     if not password or len(password) == 0:
         print 'Error: Warning the option password should contain a string.'
         print USAGE
         sys.exit(3)
-        
+
     if not text or len(text) == 0:
         print 'Error: Warning the option text should contain a string.'
         print USAGE
         sys.exit(3)
-    
+
 
 class Acapela(object):
 
-    #Properties
+    # Properties
+
     TTS_ENGINE = None
     ACCOUNT_LOGIN = None
     APPLICATION_LOGIN = None
@@ -89,59 +95,34 @@ class Acapela(object):
     SERVICE_URL = None
     QUALITY = None
     DIRECTORY = ''
-    
-    #Available voices list
-    #http://www.acapela-vaas.com/ReleasedDocumentation/voices_list.php
-    langs  = {
-        'EN': {
-            'W': {
-                'NORMAL': 'rachel',
-            },
-            'M': {
-                'NORMAL': 'margaux',
-            },
-        },
-        'US': {
-            'W': {
-                'NORMAL': 'heather',
-            },
-            'M': {
-                'NORMAL': 'ryan',
-            },
-        },
-        'ES': {
-            'W': {
-                'NORMAL': 'ines',
-            },
-            'M': {
-                'NORMAL': 'antonio',
-            }
-        },
-        'FR': {
-            'W': {
-                'NORMAL': 'alice',
-            },
-            'M': {
-                'NORMAL': 'antoine',
-            },
-        },
-        'PT': {
-            'W': {
-                'NORMAL': 'celia',
-            },
-        },
-        'BR': {
-            'W': {
-                'NORMAL': 'marcia',
-            },
-        },
-    }
+
+    # Available voices list
+    # http://www.acapela-vaas.com/ReleasedDocumentation/voices_list.php
+
+    langs = {
+        'EN': {'W': {'NORMAL': 'rachel'}, 'M': {'NORMAL': 'margaux'}},
+        'US': {'W': {'NORMAL': 'heather'}, 'M': {'NORMAL': 'ryan'}},
+        'ES': {'W': {'NORMAL': 'ines'}, 'M': {'NORMAL': 'antonio'}},
+        'FR': {'W': {'NORMAL': 'alice'}, 'M': {'NORMAL': 'antoine'}},
+        'PT': {'W': {'NORMAL': 'celia'}},
+        'BR': {'W': {'NORMAL': 'marcia'}},
+        }
+
     data = {}
     filename = None
     cache = True
-    
-    def __init__(self, account_login, application_login, application_password, service_url, quality, directory=''):
+
+    def __init__(
+        self,
+        account_login,
+        application_login,
+        application_password,
+        service_url,
+        quality,
+        directory='',
+        ):
         """construct Acapela TTS"""
+
         self.TTS_ENGINE = 'ACAPELA'
         self.ACCOUNT_LOGIN = account_login
         self.APPLICATION_LOGIN = application_login
@@ -149,17 +130,25 @@ class Acapela(object):
         self.SERVICE_URL = service_url
         self.QUALITY = quality
         self.DIRECTORY = directory
-    
-    def prepare(self, text, lang, gender, intonation):
+
+    def prepare(
+        self,
+        text,
+        lang,
+        gender,
+        intonation,
+        ):
         """Prepare Acapela TTS"""
+
         lang = lang.upper()
-        concatkey = "%s-%s-%s-%s" % (text, lang, gender, intonation)
-        key =  self.TTS_ENGINE + '' + str(hash(concatkey))
+        concatkey = '%s-%s-%s-%s' % (text, lang, gender, intonation)
+        key = self.TTS_ENGINE + '' + str(hash(concatkey))
         try:
-            req_voice = self.langs[lang][gender][intonation] + self.QUALITY
+            req_voice = self.langs[lang][gender][intonation] \
+                + self.QUALITY
         except:
             req_voice = 'lucy22k'
-        
+
         self.data = {
             'cl_env': 'PYTHON_2.X',
             'req_snd_id': key,
@@ -171,41 +160,57 @@ class Acapela(object):
             'prot_vers': '2',
             'cl_pwd': self.APPLICATION_PASSWORD,
             'req_asw_type': 'STREAM',
-        }
-        self.filename = "%s-%s.mp3" % (key, lang)
-        self.data['req_text'] = '\\vct=100\\ \\spd=160\\ %s' % text.encode("utf-8")
-        
+            }
+        self.filename = '%s-%s.mp3' % (key, lang)
+        self.data['req_text'] = '\\vct=100\\ \\spd=160\\ %s' \
+            % text.encode('utf-8')
+
     def set_cache(self, value=True):
         """
         Enable Cache of file, if files already stored return this filename
         """
+
         self.cache = value
-    
+
     def run(self):
         """run will call acapela API and and produce audio"""
-        #check if file exists
-        if self.cache and os.path.isfile(self.DIRECTORY + self.filename):
+
+        # check if file exists
+
+        if self.cache and os.path.isfile(self.DIRECTORY
+                + self.filename):
             return self.filename
         else:
             encdata = parse.urlencode(self.data)
-            request.urlretrieve(self.SERVICE_URL, self.DIRECTORY + self.filename, data=encdata)
+            request.urlretrieve(self.SERVICE_URL, self.DIRECTORY
+                                + self.filename, data=encdata)
             return self.filename
-        
-        
+
+
 def _main():
     """
     Parse options and process text to Acapela
     """
+
     # Parse arguments
+
     parser = OptionParser()
-    parser.add_option("-a", "--acclogin", dest="acclogin", help="accountlogin for authentication")
-    parser.add_option("-n", "--applogin", dest="applogin", help="applicationlogin for authentication")
-    parser.add_option("-p", "--password", dest="password", help="Password for authentication")
-    parser.add_option("-t", "--text", dest="text", help="text to synthesize")
-    parser.add_option("-l", "--language", dest="language", help="language")
-    parser.add_option("-q", "--quality", dest="quality", help="quality of synthesizer (22k, 8k, 8ka, 8kmu)")
-    parser.add_option("-d", "--directory", dest="directory", help="directory to store the file")
-    parser.add_option("-u", "--url", dest="url", help="web service url")
+    parser.add_option('-a', '--acclogin', dest='acclogin',
+                      help='accountlogin for authentication')
+    parser.add_option('-n', '--applogin', dest='applogin',
+                      help='applicationlogin for authentication')
+    parser.add_option('-p', '--password', dest='password',
+                      help='Password for authentication')
+    parser.add_option('-t', '--text', dest='text',
+                      help='text to synthesize')
+    parser.add_option('-l', '--language', dest='language',
+                      help='language')
+    parser.add_option('-q', '--quality', dest='quality',
+                      help='quality of synthesizer (22k, 8k, 8ka, 8kmu)'
+                      )
+    parser.add_option('-d', '--directory', dest='directory',
+                      help='directory to store the file')
+    parser.add_option('-u', '--url', dest='url', help='web service url')
     (options, args) = parser.parse_args()
     acclogin = options.acclogin
     applogin = options.applogin
@@ -215,33 +220,40 @@ def _main():
     quality = options.quality
     directory = options.directory
     url = options.url
-        
+
     # Perform sanity checks on options
+
     validate_options(acclogin, applogin, password, text)
-    
+
     if not quality:
         quality = QUALITY
-    
+
     if not directory:
         directory = DIRECTORY
-        
+
     if not url:
         url = SERVICE_URL
-        
+
     if not language:
         language = LANGUAGE
-    
-    tts_acapela = Acapela(acclogin, applogin, password, url, quality, directory)    
+
+    tts_acapela = Acapela(
+        acclogin,
+        applogin,
+        password,
+        url,
+        quality,
+        directory,
+        )
     gender = 'W'
     intonation = 'NORMAL'
     tts_acapela.set_cache(False)
     tts_acapela.prepare(text, language, gender, intonation)
     output_filename = tts_acapela.run()
-    
-    print "Recorded TTS to %s%s" % (directory, output_filename)
+
+    print 'Recorded TTS to %s%s' % (directory, output_filename)
+
 
 if __name__ == '__main__':
     _main()
-    
-    
 
