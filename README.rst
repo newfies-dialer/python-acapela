@@ -10,7 +10,7 @@ python-acapela
 python-acapela - Python Acapela Library
 =======================================
 
-python-acapela is a library to produce text-to-speech file using `Acapela`_ web services.
+python-acapela is a library to produce a text-to-speech file using `Acapela`_ web services.
 
 .. _Acapela: http://acapela-vaas.com/
 
@@ -40,15 +40,15 @@ Features
 * Produce text to speech in different languages, see list of languages supported :
   http://www.acapela-vaas.com/ReleasedDocumentation/voices_list.php
 
-* Support different type of audio quality 22Hk, 8Hk
+* Support different type of audio quality 22Hz, 8Hz
 
-* Provide different voices gender and different intonation
+* Provide voices of different gender and intonation
 
 
 Installation
 ------------
 
-You can install, upgrade, uninstall python-acapela.py with these commands::
+Install, upgrade and uninstall python-acapela.py with these commands::
 
   $ sudo pip install python-acapela
   $ sudo pip install --upgrade python-acapela
