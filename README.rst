@@ -7,8 +7,8 @@ python-acapela
 :Company: Developed by Star2Billing http://www.star2billing.com
 
 
-python-acapela - Python Acapela Library
-=======================================
+Python Acapela Wrapper
+======================
 
 python-acapela is a library to produce a text-to-speech file using `Acapela`_ web services.
 
