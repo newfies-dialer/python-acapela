@@ -38,7 +38,6 @@ if sys.version_info < (3, 0):
         setattr(request, method, getattr(urllib2, method))
     import cookielib as cookiejar
 else:
-
     from http import cookiejar
     from urllib import parse, request
 
@@ -55,12 +54,7 @@ USAGE = \
     """\nUsage: acapela.py -a <accountlogin> -n <applicationlogin> -p <password> -t <text> [-l <language>] [-q <quality>] [-d <directory>] [-url <service_url>] [-h]"""
 
 
-def validate_options(
-    accountlogin,
-    applicationlogin,
-    password,
-    text,
-    ):
+def validate_options(accountlogin, applicationlogin, password, text):
     """Perform sanity checks on threshold values"""
 
     if not accountlogin or len(accountlogin) == 0:
@@ -85,9 +79,7 @@ def validate_options(
 
 
 class Acapela(object):
-
     # Properties
-
     TTS_ENGINE = None
     ACCOUNT_LOGIN = None
     APPLICATION_LOGIN = None
@@ -112,17 +104,8 @@ class Acapela(object):
     filename = None
     cache = True
 
-    def __init__(
-        self,
-        account_login,
-        application_login,
-        application_password,
-        service_url,
-        quality,
-        directory='',
-        ):
+    def __init__(self, account_login, application_login, application_password, service_url, quality, directory=''):
         """construct Acapela TTS"""
-
         self.TTS_ENGINE = 'ACAPELA'
         self.ACCOUNT_LOGIN = account_login
         self.APPLICATION_LOGIN = application_login
@@ -131,15 +114,8 @@ class Acapela(object):
         self.QUALITY = quality
         self.DIRECTORY = directory
 
-    def prepare(
-        self,
-        text,
-        lang,
-        gender,
-        intonation,
-        ):
+    def prepare(self, text, lang, gender, intonation):
         """Prepare Acapela TTS"""
-
         lang = lang.upper()
         concatkey = '%s-%s-%s-%s' % (text, lang, gender, intonation)
         key = self.TTS_ENGINE + '' + str(hash(concatkey))
@@ -193,7 +169,6 @@ def _main():
     """
 
     # Parse arguments
-
     parser = OptionParser()
     parser.add_option('-a', '--acclogin', dest='acclogin',
                       help='accountlogin for authentication')
@@ -222,7 +197,6 @@ def _main():
     url = options.url
 
     # Perform sanity checks on options
-
     validate_options(acclogin, applogin, password, text)
 
     if not quality:
@@ -237,14 +211,7 @@ def _main():
     if not language:
         language = LANGUAGE
 
-    tts_acapela = Acapela(
-        acclogin,
-        applogin,
-        password,
-        url,
-        quality,
-        directory,
-        )
+    tts_acapela = Acapela(acclogin, applogin, password, url, quality, directory)
     gender = 'W'
     intonation = 'NORMAL'
     tts_acapela.set_cache(False)
@@ -256,4 +223,3 @@ def _main():
 
 if __name__ == '__main__':
     _main()
-
