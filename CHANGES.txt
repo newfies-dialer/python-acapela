@@ -6,6 +6,7 @@ Changelog
 ----------------
 
 * Improve setup.py, credits to https://github.com/jezdez/django_compressor/blob/develop/setup.py
+* PEP8 Fixes
 
 
 0.1 (2012-05-26)
