@@ -1,0 +1,75 @@
+:Version: |version|
+:Date: |today|
+:Keywords: python, tts, speech, text2speech
+:Author: Arezqui Belaid
+:Description: Python wrapper for text-to-speech synthesis with Acapela
+:Company: Developed by Star2Billing http://www.star2billing.com
+
+--
+
+.. _python-acapela-synopsis:
+
+Python-Acapela is a Python wrapper for text-to-speech synthesis with Acapela
+
+The license is MIT.
+
+
+.. _overview:
+
+Overview
+========
+
+Python-acapela is a library to produce a text-to-speech file using `Acapela`_ web services. 
+
+
+.. _usage:
+
+Example usage and output
+------------------------
+
+After installation use Acapela in comman line.
+
+::
+
+  $ Usage: python-acapela -acclogin <accountlogin> -applogin <applicationlogin> -p <password> -t <text> [-q <quality>] [-d <directory>] [-url <service_url>] [-h]
+  
+  $ Output : Recorded TTS to /tmp/ACAPELA-8895934760117809679-ES.mp3
+  
+  
+
+.. _documentation:
+
+Documentation
+=============
+
+Documentation is available on 'Read the Docs':
+http://python-acapela.readthedocs.org
+
+
+.. _contributing:
+
+Contributing
+============
+
+If you've found a bug, add a feature or improve python-acapela and
+think it is useful then please consider contributing. 
+Patches, pull requests or just suggestions are always welcome!
+
+Source code: http://github.com/Star2Billing/python-acapela
+
+
+If you don’t like Github and Git you’re welcome to send regular patches.
+
+Bug tracker: http://github.com/areski/python-acapela/issues
+
+
+.. _license:
+
+License
+=======
+
+Copyright (c) 2012 Arezqui Belaid <areski@gmail.com>
+
+Python-Acapela is licensed under MIT, see `MIT-LICENSE.txt`.
+
+
