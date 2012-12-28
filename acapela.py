@@ -98,7 +98,7 @@ class Acapela(object):
         'FR': {'W': {'NORMAL': 'alice'}, 'M': {'NORMAL': 'antoine'}},
         'PT': {'W': {'NORMAL': 'celia'}},
         'BR': {'W': {'NORMAL': 'marcia'}},
-        }
+    }
 
     data = {}
     filename = None
@@ -136,7 +136,7 @@ class Acapela(object):
             'prot_vers': '2',
             'cl_pwd': self.APPLICATION_PASSWORD,
             'req_asw_type': 'STREAM',
-            }
+        }
         self.filename = '%s-%s.mp3' % (key, lang)
         self.data['req_text'] = '\\vct=100\\ \\spd=160\\ %s' \
             % text.encode('utf-8')
