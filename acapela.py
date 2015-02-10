@@ -24,8 +24,6 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-__version__ = '0.2.1'
-
 import sys
 import os.path
 from optparse import OptionParser
@@ -40,6 +38,9 @@ if sys.version_info < (3, 0):
 else:
     from http import cookiejar
     from urllib import parse, request
+
+# Version Python-Acapela
+__version__ = '0.2.2'
 
 ACCOUNT_LOGIN = 'EVAL_XXXX'
 APPLICATION_LOGIN = 'EVAL_XXXXXXX'
@@ -130,7 +131,8 @@ class Acapela(object):
             'req_snd_id': key,
             'cl_login': self.ACCOUNT_LOGIN,
             'cl_vers': '1-30',
-            'req_err_as_id3': 'yes',
+            # req_err_as_id3 is depreciated
+            # 'req_err_as_id3': 'yes',
             'req_voice': req_voice,
             'cl_app': self.APPLICATION_LOGIN,
             'prot_vers': '2',

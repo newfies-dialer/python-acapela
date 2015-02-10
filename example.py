@@ -38,36 +38,41 @@ def test_acapela():
     """
     Function to test text to speech
     """
+    # Construct
+    tts_acapela = acapela.Acapela(
+        ACCOUNT_LOGIN,
+        APPLICATION_LOGIN,
+        APPLICATION_PASSWORD,
+        SERVICE_URL,
+        QUALITY,
+        DIRECTORY)
 
-    #Construct
-    tts_acapela = acapela.Acapela(ACCOUNT_LOGIN, APPLICATION_LOGIN, APPLICATION_PASSWORD, SERVICE_URL, QUALITY, DIRECTORY)
-
-    #General settings for test
+    # General settings for test
     gender = 'W'
     intonation = 'NORMAL'
 
-    #Spanish
+    # Spanish
     lang = 'ES'
     text = u"Newfies-Dialer es una aplicación de transmisión de voz diseñado y construido para automatizar la entrega de las llamadas telefónicas interactivas a contactos, clientes y público en general."
     tts_acapela.prepare(text, lang, gender, intonation)
     output_filename = tts_acapela.run()
     print "Recorded TTS to %s" % output_filename
 
-    #Portuguese
+    # Portuguese
     lang = 'BR'
     text = u"Newfies-Dialer é um aplicativo de transmissão de voz projetada e construída para automatizar a entrega de telefonemas interativos para contatos, clientes e público em geral."
     tts_acapela.prepare(text, lang, gender, intonation)
     output_filename = tts_acapela.run()
     print "Recorded TTS to %s" % output_filename
 
-    #French
+    # French
     lang = 'FR'
     text = u"Newfies-Dialer est une application de diffusion vocale conçu et construit pour automatiser la livraison des appels téléphoniques interactifs à des contacts, des clients et le public en général."
     tts_acapela.prepare(text, lang, gender, intonation)
     output_filename = tts_acapela.run()
     print "Recorded TTS to %s" % output_filename
 
-    #English
+    # English
     lang = 'EN'
     text = "Newfies-Dialer is a voice broadcast application designed and built to automate the delivery of interactive phone calls to contacts, clients and the general public."
     tts_acapela.prepare(text, lang, gender, intonation)
