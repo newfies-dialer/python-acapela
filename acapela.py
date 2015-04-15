@@ -93,7 +93,7 @@ class Acapela(object):
     # http://www.acapela-vaas.com/ReleasedDocumentation/voices_list.php
 
     langs = {
-        'EN': {'W': {'NORMAL': 'rachel'}, 'M': {'NORMAL': 'margaux'}},
+        'EN': {'W': {'NORMAL': 'lucy'}, 'M': {'NORMAL': 'graham'}},
         'US': {'W': {'NORMAL': 'karen'}, 'M': {'NORMAL': 'ryan'}},
         'ES': {'W': {'NORMAL': 'ines'}, 'M': {'NORMAL': 'antonio'}},
         'FR': {'W': {'NORMAL': 'alice'}, 'M': {'NORMAL': 'antoine'}},
