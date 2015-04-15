@@ -7,6 +7,23 @@ python-acapela
 :Company: Developed by Star2Billing http://www.star2billing.com
 
 
+.. image:: https://pypip.in/version/python-acapela/badge.svg
+    :target: https://pypi.python.org/pypi/python-acapela/
+    :alt: Latest Version
+
+.. image:: https://pypip.in/download/python-acapela/badge.svg
+    :target: https://pypi.python.org/pypi/python-acapela/
+    :alt: Downloads
+
+.. image:: https://pypip.in/py_versions/python-acapela/badge.svg
+    :target: https://pypi.python.org/pypi/python-acapela/
+    :alt: Supported Python versions
+
+.. image:: https://pypip.in/license/python-acapela/badge.svg
+    :target: https://pypi.python.org/pypi/python-acapela/
+    :alt: License
+
+
 Python Acapela Wrapper
 ======================
 
@@ -21,16 +38,16 @@ Quickstart
 ::
 
     import acapela
-    
+
     ACCOUNT_LOGIN = 'EVAL_XXXX'
     APPLICATION_LOGIN = 'EVAL_XXXXXXX'
     APPLICATION_PASSWORD = 'XXXXXXXX'
     SERVICE_URL = 'http://vaas.acapela-group.com/Services/Synthesizer'
-    
-    tts_acapela = acapela.Acapela(ACCOUNT_LOGIN, APPLICATION_LOGIN, APPLICATION_PASSWORD, SERVICE_URL, '22k', '/tmp/')    
+
+    tts_acapela = acapela.Acapela(ACCOUNT_LOGIN, APPLICATION_LOGIN, APPLICATION_PASSWORD, SERVICE_URL, '22k', '/tmp/')
     tts_acapela.prepare(text=u"Hola! Buenos días", lang='ES', gender='W', intonation='NORMAL')
     output_filename = tts_acapela.run()
-    
+
     print "Recorded TTS to %s" % output_filename
 
 
@@ -65,7 +82,7 @@ Example usage and output
 ::
 
   $ Usage: python-acapela -acclogin <accountlogin> -applogin <applicationlogin> -p <password> -t <text> [-q <quality>] [-d <directory>] [-url <service_url>] [-h]
-  
+
   $ Output : Recorded TTS to /tmp/ACAPELA-8895934760117809679-ES.mp3
 
 

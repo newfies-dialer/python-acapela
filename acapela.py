@@ -40,7 +40,7 @@ else:
     from urllib import parse, request
 
 # Version Python-Acapela
-__version__ = '0.2.2'
+__version__ = '0.2.3'
 
 ACCOUNT_LOGIN = 'EVAL_XXXX'
 APPLICATION_LOGIN = 'EVAL_XXXXXXX'
@@ -94,7 +94,7 @@ class Acapela(object):
 
     langs = {
         'EN': {'W': {'NORMAL': 'rachel'}, 'M': {'NORMAL': 'margaux'}},
-        'US': {'W': {'NORMAL': 'heather'}, 'M': {'NORMAL': 'ryan'}},
+        'US': {'W': {'NORMAL': 'karen'}, 'M': {'NORMAL': 'ryan'}},
         'ES': {'W': {'NORMAL': 'ines'}, 'M': {'NORMAL': 'antonio'}},
         'FR': {'W': {'NORMAL': 'alice'}, 'M': {'NORMAL': 'antoine'}},
         'PT': {'W': {'NORMAL': 'celia'}},
