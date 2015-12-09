@@ -1,10 +1,11 @@
 #
 # Usage:
-#   ./update_version.sh 0.2.3
+#   ./update_version.sh 0.2.5
 #
 
 sed -i -e "s/__version__ = '.*'/__version__ = '$1'/g" acapela.py
 sed -i -e "s/version = '.*'/version = '$1'/g" docs/source/conf.py
+sed -i -e "s/version='.*'/version='$1'/g" setup.py
 #rm -rf docs/html
 #python setup.py develop
 #make docs
