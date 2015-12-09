@@ -1,6 +1,6 @@
 .. :changelog:
 
-Changelog
+History
 -------
 
 
