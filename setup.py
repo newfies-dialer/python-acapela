@@ -22,7 +22,7 @@ test_requirements = [
 
 setup(
     name='python-acapela',
-    version='0.2.5',
+    version='0.2.6',
     description="Python Acapela Text-To-Speech",
     long_description=readme + '\n\n' + history,
     author='Arezqui Belaid',
