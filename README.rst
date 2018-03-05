@@ -7,19 +7,19 @@ python-acapela
 :Company: Developed by Star2Billing http://www.star2billing.com
 
 
-.. image:: https://pypip.in/version/python-acapela/badge.svg
+.. image:: https://img.shields.io/pypi/v/python-acapela.svg
     :target: https://pypi.python.org/pypi/python-acapela/
     :alt: Latest Version
 
-.. image:: https://pypip.in/download/python-acapela/badge.svg
+.. image:: https://img.shields.io/pypi/dm/python-acapela.svg
     :target: https://pypi.python.org/pypi/python-acapela/
     :alt: Downloads
 
-.. image:: https://pypip.in/py_versions/python-acapela/badge.svg
+.. image:: https://img.shields.io/pypi/pyversions/python-acapela.svg
     :target: https://pypi.python.org/pypi/python-acapela/
     :alt: Supported Python versions
 
-.. image:: https://pypip.in/license/python-acapela/badge.svg
+.. image:: https://img.shields.io/pypi/l/python-acapela.svg
     :target: https://pypi.python.org/pypi/python-acapela/
     :alt: License
 
