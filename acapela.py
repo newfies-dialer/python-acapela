@@ -40,7 +40,7 @@ else:
     from urllib import parse, request
 
 # Version Python-Acapela
-__version__ = '0.2.4'
+__version__ = '0.2.6'
 
 ACCOUNT_LOGIN = 'EVAL_XXXX'
 APPLICATION_LOGIN = 'EVAL_XXXXXXX'
